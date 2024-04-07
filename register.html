@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="navbar.css" />
     <link rel="stylesheet" href="register.css" />
-    <title>Registeration</title>
+    <title>Registration</title>
   </head>
   <body>
     <ul class="topnav">
@@ -55,6 +55,38 @@
       </div>
     </form>
 
-    <script src="register.js"></script>
+    <script>
+      let url = "https://diner-pancakehouse-latest.onrender.com";
+
+      function signup() {
+        var email = document.getElementById("email").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        var data = {
+          email: email,
+          username: username,
+          password: password,
+        };
+
+        fetch(url + "/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => {
+            if (response.ok) {
+              window.location.href = "login.html";
+            } else {
+              alert("Signup failed. Please try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error during signup:", error);
+          });
+      }
+    </script>
   </body>
 </html>
